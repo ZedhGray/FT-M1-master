@@ -7,7 +7,7 @@ function BinarioADecimal(num) {
   let result = 0
   //Inicias un ciclo for, de manera inversa que inicia en el valor maximo -1 y termina en 0
   //Dentro del ciclo sumamos a result, el resultado de multiplicar el index (1 o 0) por el cuadrado del numero correspondiente al index.
-  //Aqui puedes poner la solucion de cualquier manera, puedes ahorrarte el for si poner reverse() para voltear el string y ejecutar el mismo codigo pero de manera mas sencilla  
+  //Aqui puedes poner la solucion de cualquier manera, puedes ahorrarte el for si poner reverse() para voltear el string y ejecutar el mismo codigo pero de manera mas sencilla
   for (let i = str.length - 1; i >= 0; i--) {
     result += str[i] * Math.pow(2, str.length - 1 - i)
   }
@@ -15,9 +15,8 @@ function BinarioADecimal(num) {
   return result
 
   // parseInt() toma dos argumentos: la cadena de texto a convertir y la base del número. En este caso, binario "2"
-  //return parseInt(num, 2)  
+  //return parseInt(num, 2)
 }
-
 /**
  function BinarioADecimal(num) {
   // Paso 1: Divide la cadena de entrada en un array de caracteres y luego invierte el orden del array
@@ -37,9 +36,6 @@ function BinarioADecimal(num) {
 }
 */
 
-
-
-
 // 3 a binario es "111"
 /*
 7 / 2 resto 1  7 / 2   2x3 el resto es 1
@@ -57,7 +53,7 @@ function DecimalABinario(num) {
   //Instancias binario donde se contendra el strin resultante
   let binario = ''
   // usas el ciclo while
-  while (num !== 0) {
+  while (num !== 0) { //se puede usar mayor que 0
     // Dentro del bucle, se calcula el resto de la división de num por 2. Este resto es 0 o 1, que es el bit más significativo del número binario.
     binario = (num % 2) + binario
     //Luego, num se actualiza dividiéndolo por 2 y redondeando hacia abajo al entero más cercano. Esto es equivalente a eliminar el bit más significativo del número decimal.
@@ -69,7 +65,6 @@ function DecimalABinario(num) {
   // return num.toString(2)
 }
 
-// while mayor que 0, 
 
 module.exports = {
   BinarioADecimal,
