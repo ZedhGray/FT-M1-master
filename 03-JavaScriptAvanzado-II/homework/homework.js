@@ -42,11 +42,13 @@ otra vez cálculos que ya se hicieron anteriormente.
 function cacheFunction(cb) {
   const obj = {}
   return function (arg) {
+    // sin usar hasOwnProperty
+    //if (arg in obj) return obj[arg]
     if (obj.hasOwnProperty(arg)) return obj[arg]
-    obj[arg] = cb(arg)
+    obj[arg] = cb(arg) // crea la propiedad con su valor >>> key : value
     // se usa braket notation cuando no se el valor o el nombre de la propiedad
     // se usa dot notation cuando (obj.arg) se el nombre de la propiedad
-    return obj[arg]
+    return obj[arg] // qeui estoy accediendo al valor de la propiedad creada en la linea anterior.
   }
 }
 
