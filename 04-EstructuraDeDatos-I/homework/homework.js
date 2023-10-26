@@ -13,6 +13,19 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
+//Recursiva
+function nFactorial(n) {
+  // comprobamos si n es igual a 0. Si es así, devolvemos 1 porque el factorial de 0 es 1.
+  if (n === 0) {
+    return 1
+    //Si n no es 0, entonces calculamos el factorial de n multiplicando n por el factorial de n - 1. Esto se hace llamando a la función nFactorial(n - 1).
+    //La función nFactorial(n - 1) a su vez llamará a nFactorial(n - 2), y así sucesivamente, hasta que n sea 0.
+  } else {
+    return n * nFactorial(n - 1)
+  }
+}
+/*
+//Manera iterativa
 function nFactorial(n) {
   let result = 1
   for (let i = 1; i <= n; i++) {
@@ -20,8 +33,9 @@ function nFactorial(n) {
   }
   return result
 }
+*/
 /*
-//Manera iterativa
+//En stack
 function nFactorial(n) {
   // Creamos una pila vacía stack y un resultado inicial result de 1.
   let stack = [];
@@ -38,7 +52,20 @@ function nFactorial(n) {
   return result;
 }
 */
+/*------------------------------------------------------------------------------------------------------- */
+//Manera recursiva
+function nFibonacci(n) {
+  //Primero, comprobamos si n es menor o igual a 1. Si es así, devolvemos n porque los dos primeros términos de la secuencia de Fibonacci son 0 y 1
+  if (n <= 1) {
+      return n;
+  }
+  // Si n es mayor que 1, entonces calculamos el n-ésimo término de la secuencia de Fibonacci como la suma del (n-1)-ésimo y (n-2)-ésimo términos. Esto se hace llamando a la función nFibonacci(n - 1) y nFibonacci(n - 2)
+  // La función nFibonacci(n - 1) y nFibonacci(n - 2) a su vez llamarán a nFibonacci(n - 2), nFibonacci(n - 3), y así sucesivamente, hasta que n sea 0 o 1.
+  return nFibonacci(n - 1) + nFibonacci(n - 2);
+}
 
+/*
+//Manera iterativa
 function nFibonacci(n) {
   let result = [0, 1]
   for (let i = 2; i <= n; i++) {
@@ -46,24 +73,9 @@ function nFibonacci(n) {
   }
   return result[n]
 }
-/*
-//Manera iterativa
-function nFibonacci(n) {
-  let a = 0, b = 1;
-  //Comprobamos si n es 0
-  if (n === 0) {
-    return a;
-  }
-  //Calculamos el siguiente término de la secuencia de Fibonacci como la suma de a y b, y luego actualizamos a y b para que sean los dos últimos términos de la secuencia.
-  for (let i = 2; i <= n; i++) {
-    let temp = a + b;
-    a = b;
-    b = temp;
-  }
-  return b;
-}
-
 */
+/*
+
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
   - enqueue: agrega un valor respetando el orden.
