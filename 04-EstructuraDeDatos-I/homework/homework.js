@@ -21,13 +21,18 @@ function nFactorial(n) {
     //Si n no es 0, entonces calculamos el factorial de n multiplicando n por el factorial de n - 1. Esto se hace llamando a la función nFactorial(n - 1).
     //La función nFactorial(n - 1) a su vez llamará a nFactorial(n - 2), y así sucesivamente, hasta que n sea 0.
   } else {
-    return n * nFactorial(n - 1)
+    return n * nFactorial(n - 1) //Se puede poner --n (no n-- se puede buggear)
   }
 }
 /*
 //Manera iterativa
 function nFactorial(n) {
+  // declaramos la variable en 1, guarda el resultado
   let result = 1
+  //Iniciamos un bucle for que comienza con i igual a 1 y continúa hasta que i es mayor que n. En cada iteración del bucle, multiplicamos result por i y luego incrementamos i en 1.
+  //En la primera iteración, i es 1, por lo que multiplicamos result por 1 y almacenamos el resultado en result.
+En la segunda iteración, i es 2, por lo que multiplicamos result por 2 y almacenamos el resultado en result.
+Continuamos este proceso hasta que i es mayor que n.
   for (let i = 1; i <= n; i++) {
     result *= i
   }
@@ -67,7 +72,12 @@ function nFibonacci(n) {
 /*
 //Manera iterativa
 function nFibonacci(n) {
+  //Los primero numero de la secuencia son 0, 1, los agregamos en un array que contendra el resultado
   let result = [0, 1]
+  //En cada iteracion calculamos el siguiente numero de la secuencia. Se agregan al array
+  //En la primera iteración, i es 2, por lo que calculamos result[2] como result[1] + result[0] y agregamos este número al final de result.
+  //En la segunda iteración, i es 3, por lo que calculamos result[3] como result[2] + result[1] y agregamos este número al final de result.
+  //Continuamos este proceso hasta que i es mayor que n.
   for (let i = 2; i <= n; i++) {
     result.push(result[i - 1] + result[i - 2])
   }
@@ -88,7 +98,7 @@ function nFibonacci(n) {
       * practicar pasando el modo Function constructora a Clase Constructora (Class)
 Pueden utilizar class o función constructora.
 */
-
+/*
 function Queue() {
   this.items = []
 }
@@ -128,7 +138,8 @@ Queue.prototype.changeLastElement = function (newElement) {
   //Retorna el elemento en la ultima posicion, despues de eliminar el anterior
   return true
 }
-
+*/
+/* ---------------------------------------------------------------------------- */
 //Usando la clase constructora Class
 //Por que la class se sacan los elementos del constructor:
 //Explicacion, cuando tu generas una clase, es una caja: con cierto espacio y ciertas cosas dentro.
@@ -139,7 +150,9 @@ Queue.prototype.changeLastElement = function (newElement) {
 //Instanciar la clase
 class Queue {
   //Constructor de clase
+  //This en una clase : Hace referencia a la instancia de la clase, en la propiedad item.
   constructor() {
+    //Inicializa la propiedad item de tipo array : en array vacio
     this.items = []
   }
   //Metodo agregar elemento : hace referencia al item contenido en el padre(scope)
