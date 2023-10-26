@@ -143,7 +143,7 @@ var obj = {
   prop: {
     fullname: 'Aurelio De Rosa',
     getFullname: function () {
-      return this.fullname
+      return this.fullname // si cambio this por obj.prop.fullname el test funciona
     },
   },
 }
@@ -152,7 +152,8 @@ console.log(obj.prop.getFullname()) // 'Aurelio De Rosa'
 
 var test = obj.prop.getFullname
 
-console.log(test()) // 'Juan Perez'
+console.log(test()) // undefined
+//por que no puede buscar la prop en algo que no ve this
 ```
 
 ### Event loop

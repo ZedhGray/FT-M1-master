@@ -40,12 +40,14 @@ otra vez cálculos que ya se hicieron anteriormente.
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
 
 function cacheFunction(cb) {
-  const obj = {}
+  const obj = {
+    2 : 4
+  }
   return function (arg) {
     // sin usar hasOwnProperty
     //if (arg in obj) return obj[arg]
     if (obj.hasOwnProperty(arg)) return obj[arg]
-    obj[arg] = cb(arg) // crea la propiedad con su valor >>> key : value
+    obj[arg] = cb(arg) // crea la propiedad con su valor >>> key : value // 2 : 4 key : value
     // se usa braket notation cuando no se el valor o el nombre de la propiedad
     // se usa dot notation cuando (obj.arg) se el nombre de la propiedad
     return obj[arg] // qeui estoy accediendo al valor de la propiedad creada en la linea anterior.
@@ -87,7 +89,7 @@ let getNombreAlumno = getNombre.bind(alumno)
 function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha
 }
-//El primer lugar e ignora por que no exoste el this en la funcion:
+//El primer lugar e ignora por que no existe el this en la funcion:
 let textoAsteriscos = crearCadena.bind(this, '*', '*')
 let textoGuiones = crearCadena.bind(null, '-', '-')
 let textoUnderscore = crearCadena.bind('undefined', '_', '_')
