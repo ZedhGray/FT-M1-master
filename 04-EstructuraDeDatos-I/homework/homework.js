@@ -13,7 +13,6 @@ Secuencia:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 
 Como ejercicio adicional y completamente opcional, al terminar de resolver este problema pueden intentar definir funciones que logren los mismos resultados pero de manera iterativa.
 */
-
 function nFactorial(n) {
   let result = 1
   for (let i = 1; i <= n; i++) {
