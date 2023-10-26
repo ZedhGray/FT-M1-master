@@ -57,11 +57,11 @@ function nFactorial(n) {
 function nFibonacci(n) {
   //Primero, comprobamos si n es menor o igual a 1. Si es así, devolvemos n porque los dos primeros términos de la secuencia de Fibonacci son 0 y 1
   if (n <= 1) {
-      return n;
+    return n
   }
   // Si n es mayor que 1, entonces calculamos el n-ésimo término de la secuencia de Fibonacci como la suma del (n-1)-ésimo y (n-2)-ésimo términos. Esto se hace llamando a la función nFibonacci(n - 1) y nFibonacci(n - 2)
   // La función nFibonacci(n - 1) y nFibonacci(n - 2) a su vez llamarán a nFibonacci(n - 2), nFibonacci(n - 3), y así sucesivamente, hasta que n sea 0 o 1.
-  return nFibonacci(n - 1) + nFibonacci(n - 2);
+  return nFibonacci(n - 1) + nFibonacci(n - 2)
 }
 
 /*
@@ -77,11 +77,15 @@ function nFibonacci(n) {
 /*
 
 /*
-Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
-  - enqueue: agrega un valor respetando el orden.
-  - dequeue: remueve un valor respetando el orden. Retorna undefined cuando la queue está vacía.
-  - size: retorna el tamaño (cantidad de elementos) de la queue.
+  Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
+    - enqueue: agrega un valor respetando el orden.
+    - dequeue: remueve un valor respetando el orden. Retorna undefined cuando la queue está vacía.
+    - size: retorna el tamaño (cantidad de elementos) de la queue.
+    //Extras
+  - changeFirstElement: cambia el elemento que se encuentra al inicio de la queue
+    - changeLastElement: cambia el elemento que se encuentra al final de la queue
 
+      * practicar pasando el modo Function constructora a Clase Constructora (Class)
 Pueden utilizar class o función constructora.
 */
 
@@ -107,6 +111,68 @@ Queue.prototype.isEmpty = function () {
 Queue.prototype.size = function () {
   // Retorna el tamaño de la cola
   return this.items.length
+}
+//Extras
+Queue.prototype.changeFirstElement = function (newElement) {
+  if (this.isEmpty()) return false
+  this.items.shift()
+  this.items.unshift(newElement)
+  //Retorna el elemento en la primera posicion, despues de eliminar el anterior
+  return true
+}
+
+Queue.prototype.changeLastElement = function (newElement) {
+  if (this.isEmpty()) return false
+  this.items.pop()
+  this.items.push(newElement)
+  //Retorna el elemento en la ultima posicion, despues de eliminar el anterior
+  return true
+}
+
+//Usando la clase constructora Class
+//Por que la class se sacan los elementos del constructor:
+//Explicacion, cuando tu generas una clase, es una caja: con cierto espacio y ciertas cosas dentro.
+//Cuando tu la usas, para crear clases nuevas con herencia TODO, se pasa a la siguiente clase  hija, esto gasta espacio
+//Por eso las funciones (metodos) se dejan fuera del constructor para que puedan ser llamados por la clase pero no ocupen espacio
+//al crearce un nuevo con herencia. Tienen la propiedad sin contenerla o duplicarla en si mismos.
+
+//Instanciar la clase
+class Queue {
+  //Constructor de clase
+  constructor() {
+    this.items = []
+  }
+  //Metodo agregar elemento : hace referencia al item contenido en el padre(scope)
+  enqueue(element) {
+    this.items.push(element)
+  }
+  //Metodo eliminar elemento : hace referencia al item contenido en el padre(scope)
+  dequeue() {
+    if (this.isEmpty()) return undefined
+    return this.items.shift()
+  }
+  //Metodo Cuenta los elemento dentro del item : hace referencia al item contenido en el padre(scope)
+  size() {
+    return this.items.length
+  }
+  // Elimina el primer elemento, agrega en primera posicion el nuevo elemento dentro del item
+  changeFirstElement(newElement) {
+    if (this.isEmpty()) return false
+    this.items.shift()
+    this.items.unshift(newElement)
+    return true
+  }
+  // Elimina el ultimo elemento, agrega en ultima posicion el nuevo elemento dentro del item.
+  changeLastElement(newElement) {
+    if (this.isEmpty()) return false
+    this.items.pop()
+    this.items.push(newElement)
+    return true
+  }
+  //Verifica si existen elemento dentro del item : hace referencia al item contenido en el padre(scope)
+  isEmpty() {
+    return this.items.length == 0
+  }
 }
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
