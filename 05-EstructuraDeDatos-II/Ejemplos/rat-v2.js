@@ -1,7 +1,4 @@
-//Respuesta:
-//Por donde me puedo mover fn()
-//Verificar si puedo llegar al final fn() boolean (DSF algoritmo de búsqueda en profundidad)
-//
+//El codigo debe retornar un obj Laberinto resuelto con un "[*]" en cada posicion que paso para resolverse
 
 //Verificar donde me puedo mover:
 function isValidMove(lab, arrayI, posI) {
@@ -16,11 +13,14 @@ function isValidMove(lab, arrayI, posI) {
 
 //Busqueda DSF
 //Esta función debe tomar el laberinto, la posición inicial, la posición final y una matriz para marcar las posiciones ya visitadas. Si la posición final es alcanzable, Debe devolver un array con el resultado.
-function dfs(lab, init, finish, visited, path) {
+function dfs(lab, init, finish, visited, path = []) {
   if (init.array === finish.array && init.pos === finish.pos) {
     return path
   }
   visited[init.array][init.pos] = true
+  if (lab[init.array][init.pos] === '') {
+    lab[init.array][init.pos] = '[*]'
+  }
   const directions = [
     [0, 1],
     [1, 0],
@@ -54,40 +54,38 @@ function dfs(lab, init, finish, visited, path) {
 }
 
 //Pasar los lab a visited // Lo iba a hacer para mas laberintos pero tenia que poner atencion en clase
+function generateVisited(lab) {
+  const visited = new Array(Object.keys(lab).length)
 
-const visitedA = {
-  0: [false, false, false, false],
-  1: [false, false, false, false],
-  2: [false, false, false, false],
-  3: [false, false, false, false],
+  for (let i = 0; i < visited.length; i++) {
+    visited[i] = new Array(lab[i].length).fill(false)
+  }
+
+  return visited
 }
-const visitedWA = {
-  0: [false, false, false, false],
-  1: [false, false, false, false],
-  2: [false, false, false, false],
-  3: [false, false, false, false],
+
+function lab(labels, startlab, finishlab) {
+  let visited = generateVisited(labels)
+  let route = dfs(labels, startlab, finishlab, visited)
+  //Concatenamos el valor inicial al resultado de cb
+  route.unshift(startlab)
+  //Creamos la copy
+  let labelCopy = JSON.parse(JSON.stringify(labels))
+
+  for (let arrayI in labelCopy) {
+    for (let posI in labelCopy[arrayI]) {
+      if (!route.some((step) => step.array === arrayI && step.pos === posI)) {
+        labelCopy[arrayI][posI] = '___'
+      }
+    }
+  }
+
+  for (let step of route) {
+    labelCopy[step.array][step.pos] = '[*]'
+  }
+
+  return labelCopy
 }
-const visitedB = {
-  0: [false, false, false, false, false, false, false, false],
-  1: [false, false, false, false, false, false, false, false],
-  2: [false, false, false, false, false, false, false, false],
-  3: [false, false, false, false, false, false, false, false],
-  4: [false, false, false, false, false, false, false, false],
-  5: [false, false, false, false, false, false, false, false],
-  6: [false, false, false, false, false, false, false, false],
-  7: [false, false, false, false, false, false, false, false],
-}
-const visitedWB = {
-  0: [false, false, false, false, false, false, false, false],
-  1: [false, false, false, false, false, false, false, false],
-  2: [false, false, false, false, false, false, false, false],
-  3: [false, false, false, false, false, false, false, false],
-  4: [false, false, false, false, false, false, false, false],
-  5: [false, false, false, false, false, false, false, false],
-  6: [false, false, false, false, false, false, false, false],
-  7: [false, false, false, false, false, false, false, false],
-}
-//* Lab simple
 const initLabA = { array: 0, pos: 0 }
 const finishLabA = { array: 3, pos: 0 }
 const labA = {
@@ -125,13 +123,7 @@ const labWayB = {
   6: ['', '', '', [], '', '', '', ''],
   7: ['', '', '', [], '', '', '', ''],
 }
-
-console.log(dfs(labA, initLabA, finishLabA, visitedA, (path = []))) // Array del
-console.log(dfs(labWayA, initLabA, finishLabA, visitedWA, (path = []))) // Array del resultado
-console.log(dfs(labB, initLabB, finishLabB, visitedB, (path = []))) // Array del resultado
-console.log(dfs(labB, initLabB, finishLabB, visitedWB, (path = []))) // Array del resultado
-
-function lab(dfs, labels, startlab, finishlab, visited) {
-  let route = dfs(labels, startlab, finishlab, visited, (path = []))
-  
-}
+console.log(lab(labA, initLabA, finishLabA))
+console.log(lab(labWayA, initLabA, finishLabA))
+console.log(lab(labB, initLabB, finishLabB))
+console.log(lab(labWayB, initLabB, finishLabB))
