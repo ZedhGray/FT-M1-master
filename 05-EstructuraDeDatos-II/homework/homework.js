@@ -51,27 +51,23 @@ LinkedList.prototype.remove = function () {
   // Si la lista está vacía (head es null), devuelve null
   if (!this.head) return null
   // Inicializa current al head de la lista
-  let current = this.head
-  // Inicializa newTail al head de la lista
-  let newTail = current
-  // Mientras current tenga un siguiente nodo
-  while (current.next) {
-    // Actualiza newTail y current al siguiente nodo
-    newTail = current
-    current = current.next
-  }
-  // Actualiza tail al newTail
-  this.tail = newTail
-  // Elimina el siguiente nodo de tail
-  this.tail.next = null
-  
-  // Vemos cuantos valores hay en el contador _length
-  if (this._lenth === 0) {
+  let current = this.head // guardamos el nodo
+  //Si solo hay un nodo en la lista
+  if (!this.head.next) {
     this.head = null
-    this.tail = null
+    this._length-- //
+    return current.value
+  } else {
+    // Mientras current tenga un siguiente nodo
+    while (current.next.next) {
+      // Aqui va a avanzar hasta el pen-Ultimonext.
+      current = current.next
+    }
+    let value = current.next.value
+    current.next = null
+    this._lenth--
+    return value
   }
-  // Devuelve el valor del nodo actual (que es el último nodo eliminado)
-  return current.value
 }
 
 //Busca un nodo, (cb o value)

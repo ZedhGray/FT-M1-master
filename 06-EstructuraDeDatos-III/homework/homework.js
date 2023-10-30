@@ -12,6 +12,7 @@
 */
 
 function BinarySearchTree(value) {
+  //Por buena practica el value se deberia llamar root
   this.value = value
   this.left = null
   this.right = null
@@ -23,6 +24,7 @@ BinarySearchTree.prototype.insert = function (value) {
       // si la derecha esta vacia (null) inserta el nodo
       this.right = new BinarySearchTree(value)
     } else {
+      //Si hay algo en la derecha, entramos en el ndodo hijo:
       //Inicia la recursividad
       this.right.insert(value)
     }
@@ -32,6 +34,7 @@ BinarySearchTree.prototype.insert = function (value) {
       // si la izquierda esta vacia (null) inserta el nodo
       this.left = new BinarySearchTree(value)
     } else {
+      //Si hay algo en la izquierda, entramos en el nodo hijo.
       //Inicia la recursividad
       this.left.insert(value)
     }
@@ -39,15 +42,15 @@ BinarySearchTree.prototype.insert = function (value) {
 }
 //Metodo size
 BinarySearchTree.prototype.size = function () {
-  // Si ambas son distintas de null
+  //verifica si el nodo actual no tiene hijos izquierdos ni derechos
   if (!this.left && !this.right) {
-    return 1
+    return 1 //Entonces el tamaño del arbol es 1
   }
-  //Si la izquierda no es null
+  //Si el nodo actual no tiene un hijo derecho
   if (!this.left) return 1 + this.right.size()
-  //si la derecha no es null
+  //Si el nodo actual no tiene un hijo izquierdo
   if (!this.right) return 1 + this.left.size()
-  // si ambos son null
+  //Si el nodo actual tiene tanto un hijo izquierdo como un hijo derecho
   if (this.right && this.left) return 1 + this.left.size() + this.right.size()
 }
 
@@ -83,7 +86,7 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
     cb(this.value)
     // Realiza una búsqueda en profundidad en el subárbol derecho
     this.right && this.right.depthFirstForEach(cb, order)
-  } 
+  }
   // Si el orden es 'post-order'
   else if (order === 'post-order') {
     // Realiza una búsqueda en profundidad en el subárbol izquierdo
@@ -92,7 +95,7 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
     this.right && this.right.depthFirstForEach(cb, order)
     // Llama a la función de callback con el valor del nodo actual
     cb(this.value)
-  } 
+  }
   // Si el orden es 'pre-order'
   else {
     // Llama a la función de callback con el valor del nodo actual
