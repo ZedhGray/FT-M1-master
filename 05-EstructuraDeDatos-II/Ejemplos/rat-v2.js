@@ -123,7 +123,33 @@ const labWayB = {
   6: ['', '', '', [], '', '', '', ''],
   7: ['', '', '', [], '', '', '', ''],
 }
+
+const initLabZ = { array: 0, pos: 0 }
+const finishLabZ = { array: 7, pos: 3 }
+const labWayZ = {
+  0: [[], [], [], [], [], [], [], ''],
+  1: ['', [], [], [], [], '', [], []],
+  2: ['', '', '', '', '', '', [], ''],
+  3: [[], [], [], [], [], [], [], []],
+  4: [[], '', [], '', '', '', '', []],
+  5: [[], [], [], [], '', '', '', []],
+  6: ['', '', [], [], [], [], [], []],
+  7: ['', '', [], '', '', '', '', ''],
+}
+const labWayZsolution = {
+  0: [[], [], [], [], [], [], [], ''],
+  1: ['', '', '', '', '', '', [], ''],
+  2: ['', '', '', '', '', '', [], ''],
+  3: ['', '', [], [], [], [], [], ''],
+  4: ['', '', [], '', '', '', '', ''],
+  5: ['', '', [], '', '', '', '', ''],
+  6: ['', '', [], '', '', '', '', ''],
+  7: ['', '', [], '', '', '', '', ''],
+}
+
 console.log(lab(labA, initLabA, finishLabA))
 console.log(lab(labWayA, initLabA, finishLabA))
 console.log(lab(labB, initLabB, finishLabB))
 console.log(lab(labWayB, initLabB, finishLabB))
+
+//console.log(lab(labWayZ, initLabZ, finishLabZ))

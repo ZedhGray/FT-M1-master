@@ -46,9 +46,9 @@ BinarySearchTree.prototype.size = function () {
   if (!this.left && !this.right) {
     return 1 //Entonces el tamaño del arbol es 1
   }
-  //Si el nodo actual no tiene un hijo derecho
+  //Si el nodo actual no tiene un hijo derecho // si no tengo algo en la izquierda pero tengo algo voy a la derecha
   if (!this.left) return 1 + this.right.size()
-  //Si el nodo actual no tiene un hijo izquierdo
+  //Si el nodo actual no tiene un hijo izquierdo // si no tengo algo en la derecha pero tengo algo voy a la izquierda
   if (!this.right) return 1 + this.left.size()
   //Si el nodo actual tiene tanto un hijo izquierdo como un hijo derecho
   if (this.right && this.left) return 1 + this.left.size() + this.right.size()
@@ -116,9 +116,12 @@ BinarySearchTree.prototype.breadthFirstForEach = function (cb, array = []) {
   if (this.right) {
     array.push(this.right)
   }
+  //Esta línea llama a la función de devolución de llamada con el valor del nodo actual.
   cb(this.value)
   //Aplicamos la recursion si el array es mayor a cero
+  //Esta línea verifica si el array aún tiene nodos que no se han visitado. Si es así, quita el primer nodo del array y realiza una llamada recursiva a breadthFirstForEach en ese nodo.
   if (array.length > 0) {
+    // array es la queue, shift saca el primer elemento y aplico la recursividad dentro de los parametros
     array.shift().breadthFirstForEach(cb, array)
   }
 }
