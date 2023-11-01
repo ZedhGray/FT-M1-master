@@ -1,7 +1,7 @@
 'use strict'
 // No cambies los nombres de las funciones.
 
-function factorear(num) {
+function factorear(num) { 
   // Factorear el número recibido como parámetro y devolver en un array
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
@@ -11,7 +11,6 @@ function factorear(num) {
   /**
    La raíz cuadrada se utiliza porque no es necesario comprobar los números mayores que la raíz cuadrada del número, ya que si un número mayor que la raíz cuadrada divide al número, su factor correspondiente será menor que la raíz cuadrada y ya se habrá comprobado en las iteraciones anteriores.
    */
-
   for (let i = 2; i <= Math.sqrt(num); i++) {
     // Iniciamos un bucle for que recorre todos los números desde 2 hasta la raíz cuadrada del número.
     while (num % i === 0) {
@@ -20,7 +19,6 @@ function factorear(num) {
       num /= i // Dividimos el número por el factor.
     }
   }
-
   if (num > 1) {
     // Si el número restante es mayor que 1.
     array.push(num) // Añadimos el número restante al array.
@@ -28,6 +26,7 @@ function factorear(num) {
 
   return array // Devolvemos el array con los factores.
 }
+/*
 function bubbleSort(array) {
   // Implementar el método conocido como bubbleSort para ordenar de menor a mayor
   //BS - Compara cada par de elementos adyacentes en una lista y los intercambia si están en el orden incorrecto.
@@ -51,6 +50,33 @@ function bubbleSort(array) {
     }
   }
   return array
+}
+*/
+function bubbleSort(array) {
+  // Obtenemos la longitud del array
+  let len = array.length
+  // Creamos una variable booleana para verificar si se realizó algún intercambio en la iteración
+  let swapped
+  // Utilizamos un bucle do-while para iterar a través del array hasta que esté ordenado
+  do {
+    // Al inicio de cada iteración, establecemos swapped en false
+    swapped = false
+    // Usamos un bucle for para comparar elementos adyacentes
+    for (let i = 0; i < len - 1; i++) {
+      // Si el elemento actual es mayor que el siguiente, los intercambiamos
+      if (array[i] > array[i + 1]) {
+        // Guardamos el elemento actual en una variable temporal
+        let k = array[i]
+        // Asignamos el valor del siguiente elemento al elemento actual
+        array[i] = array[i + 1]
+        // Asignamos el valor de la variable temporal al siguiente elemento
+        array[i + 1] = k
+        // Si se realizó algún intercambio, establecemos swapped en true
+        swapped = true
+      }
+    }
+  } while (swapped) // El bucle continúa hasta que no se realice ningún intercambio en una iteración
+  return array // Devolvemos el array ordenado
 }
 
 function insertionSort(array) {
